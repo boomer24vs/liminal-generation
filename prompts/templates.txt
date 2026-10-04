@@ -1,0 +1,5 @@
+# Keyword style. generator.py prefixes "raw amateur snapshot of a liminal space, ".
+# Placeholders: {environment} {walls} {floors} {anomalies} {details} {lighting} {viewpoint} {camera}. Empty ones are cleaned up.
+{environment}, {walls}, {floors}, {lighting}, {anomalies}, {details}, eerie quietness, empty, no people, authentic liminal photography, {viewpoint}, {camera}
+{environment}, {anomalies}, {walls}, {floors}, {details}, {lighting}, eerie quietness, deserted, no people, authentic liminal photography, {camera}, {viewpoint}
+{environment}, {lighting}, {floors}, {walls}, {details}, {anomalies}, {viewpoint}, eerie quietness, empty, no people, authentic liminal photography, {camera}

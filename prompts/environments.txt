@@ -1,0 +1,41 @@
+# Liminal / backrooms locations only: mundane, empty, transitional. {slot} = random pick from prompts/slots/<slot>.txt
+# [no-walls] / [no-floors]: the location already defines them, so walls.txt / floors.txt are not drawn.
+endless repetitive office hallway with mono-yellow peeling wallpaper and a water-stained drop ceiling [no-walls]
+endless maze of mono-yellow rooms with {wallpaper} wallpaper, {carpet} carpet and a low drop ceiling [no-walls] [no-floors]
+narrow backrooms corridor with {wallpaper} wallpaper and {carpet} carpet turning a blind corner [no-walls] [no-floors]
+endless labyrinth of identical partitioned beige cubicles with acoustic dividers
+infinite carpeted open-space office cubicles partitioned with dull grey felt dividers [no-floors]
+windowless conference room with a long table and chairs pushed in neatly
+sunken split-level carpeted lounge area with missing furniture and blank plasterboard walls [no-walls] [no-floors]
+subterranean tiled poolroom with arches, columns and shallow still turquoise water [no-walls] [no-floors]
+tiled poolroom with {color} tiles on every surface and archways leading nowhere [no-walls] [no-floors]
+deserted subterranean tiled maintenance level with shallow murky standing water [no-walls] [no-floors]
+subterranean network of interconnected utility hallways with exposed overhead conduits
+claustrophobic junction of narrow hallways with repetitive identical unlabeled wooden doors
+deserted concrete basement parking with yellow navigation stripes and exposed metal pipes [no-walls] [no-floors]
+multi-storey parking garage level with numbered concrete pillars and no cars [no-walls] [no-floors]
+dead shopping mall at night with shuttered storefronts, dead escalators and a polished floor [no-walls] [no-floors]
+dead shopping concourse with closed rolling steel grilles and dead fluorescent signs [no-walls]
+vintage hotel corridor with symmetrical doors and an endless patterned red carpet [no-floors]
+long motel corridor with {carpet} carpet, identical doors and an ice machine alcove [no-floors]
+empty linoleum hospital corridor lit by a single emergency exit sign [no-floors]
+long linoleum hospital service corridor with low drop ceilings and blind corner turns [no-floors]
+underground transit tiled corridor with sharp turns, blind corners and no signage [no-walls]
+unfinished concrete service tunnel with dangling cables and puddles of dark water [no-walls] [no-floors]
+empty warehouse with steel support beams and cracked dusty concrete floor [no-walls] [no-floors]
+vast empty warehouse floor with massive square concrete pillars repeating into darkness [no-floors]
+infinite flight of raw concrete emergency stairs leading nowhere with locked fire doors [no-walls] [no-floors]
+concrete stairwell with painted metal handrails and an exit sign [no-walls] [no-floors]
+retro school gymnasium with polished wood flooring and high mesh-covered windows [no-floors]
+school hallway lined with {color} lockers and {floor} floor [no-floors]
+empty classroom with rows of small desks, a green chalkboard and {floor} floor [no-floors]
+basement utility room with a network of old green pipes and valves
+maintenance corridor with exposed pipes, painted cinderblock walls and a single metal door [no-walls]
+storage area with metal shelving units of unlabeled cardboard boxes
+waiting room with molded plastic chairs, a water cooler and a low table
+indoor playplace with plastic tube slides and netting, closed for the night [no-floors]
+laundromat with rows of front-loading washers and plastic chairs
+deserted airport gate with rows of connected seats at night [no-walls]
+office building lobby with a reception desk, {floor} floor and an elevator bank [no-floors]
+empty art gallery with blank white walls and track lighting pointing at nothing [no-walls]
+1990s suburban living room with a floral sofa, {carpet} carpet and a boxy CRT television [no-floors]
