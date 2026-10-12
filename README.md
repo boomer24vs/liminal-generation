@@ -47,7 +47,7 @@ Each click builds a new prompt (place, lighting, camera, details…), sends it t
 </table>
 
 <div align="center">
-<img src="docs/media/app.png" width="560" alt="The app window: the image, Generate, Save and the settings button">
+<img src="docs/media/app.jpg" width="560" alt="The app window: the image, Generate, Save and the settings button">
 <br><sub>The app</sub>
 </div>
 

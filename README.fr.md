@@ -47,7 +47,7 @@
 </table>
 
 <div align="center">
-<img src="docs/media/app.png" width="560" alt="La fenêtre de l'app : l'image, Generate, Save et le bouton des réglages">
+<img src="docs/media/app.jpg" width="560" alt="La fenêtre de l'app : l'image, Generate, Save et le bouton des réglages">
 <br><sub>L'app</sub>
 </div>
 
