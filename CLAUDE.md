@@ -29,7 +29,7 @@ L'application repose sur un bouton déclencheur, une rotation combinatoire de pr
 - La source de vérité pour l'UI est `style/interface.md`.
 - Outil : minimaliste, seulement l'essentiel à l'écran (image, Generate, Save, ⚙), thème sombre, textes de l'UI en anglais.
 - Rendu des images : aspect argentique / analogique, photo brute amateur (1985–2008, flash direct, VHS/disposable camera), zéro esthétique CGI ou lisse.
-- Contenu : espaces vides, **toujours sans personne**. Inspirations : Backrooms de Kane Pixels, r/LiminalSpace.
+- Contenu : espaces vides, **sans personne**, sauf de rares présences humaines ambiguës et inquiétantes (~1 image sur 6, jamais deux d'affilée, jamais de créature ; `prompts/presences.txt`). Inspirations : Backrooms de Kane Pixels, r/LiminalSpace.
 - La variété ne doit jamais faire sortir du style liminal (quantités bornées, palettes liminales).
 - Éviter : fenêtres encombrées, blocage/gel du thread UI pendant les requêtes réseau.
 

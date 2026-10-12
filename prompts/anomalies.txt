@@ -1,4 +1,4 @@
-# Subtle wrongness only. Never monsters, never people.
+# Subtle wrongness only. Never monsters, never people (rare human presences live in presences.txt).
 a doorway that opens directly onto a solid blank wall
 a staircase leading straight into the ceiling
 a flight of stairs submerged under clear stagnant water

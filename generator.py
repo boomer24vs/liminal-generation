@@ -21,10 +21,14 @@ QUANTITIES = {
     "walls": (1, 1),
     "floors": (1, 1),
     "details": (1, 1),
+    "presence": (1, 1),
     "anomalies": (1, 1),
 }
 # category -> probability of being present at all
-PROBABILITIES = {"anomalies": 0.35, "details": 0.6, "viewpoint": 0.5, "walls": 0.6, "floors": 0.6}
+# presence: 0.2 with "never twice in a row" gives ~1 image in 6 (0.2 / 1.2).
+PROBABILITIES = {"anomalies": 0.35, "details": 0.6, "viewpoint": 0.5, "walls": 0.6, "floors": 0.6, "presence": 0.2}
+# Template items dropped when a presence is drawn, so the prompt doesn't contradict itself.
+EMPTINESS_ITEMS = {"empty", "deserted", "no people"}
 
 # file name in prompts/ -> category key
 CATEGORY_FILES = {
@@ -36,6 +40,7 @@ CATEGORY_FILES = {
     "floors": "floors",
     "details": "details",
     "anomalies": "anomalies",
+    "presences": "presence",
 }
 
 RECENT_SIZE = 5  # anti-proximity window for environment and lighting
@@ -52,13 +57,13 @@ class PromptResult:
     seed: int
     slug: str
     key: str  # combination hash, stored in history
-    signature: dict  # raw environment/lighting, for the anti-proximity window
+    signature: dict  # raw environment/lighting + presence flag, for the anti-proximity window
 
 
 @dataclass
 class History:
     combos: set = field(default_factory=set)  # hashes of every combination ever generated
-    recent: list = field(default_factory=list)  # [{"environment": raw, "lighting": raw}, ...] newest last
+    recent: list = field(default_factory=list)  # [{"environment": raw, "lighting": raw, "presence": bool}, ...] newest last
 
     def to_dict(self):
         return {"combos": sorted(self.combos), "recent": self.recent}
@@ -98,12 +103,17 @@ def fill_slots(text, slots, rng):
 
 def draw_raw(categories, rng, recent, exclusions=None):
     """Draw raw (unfilled) fragments per category, avoiding recent environments/lightings
-    and the categories the drawn environment excludes."""
+    and the categories the drawn environment excludes. A presence is never drawn twice
+    in a row and replaces the anomaly."""
     exclusions = exclusions or {}
     drawn = {}
     for category, (low, high) in QUANTITIES.items():
         pool = categories.get(category, [])
         excluded = exclusions.get(drawn["environment"][0], set()) if drawn.get("environment") else set()
+        if category == "presence" and recent and recent[-1].get("presence"):
+            excluded = excluded | {"presence"}
+        if category == "anomalies" and drawn.get("presence"):
+            excluded = excluded | {"anomalies"}
         if not pool or category in excluded or rng.random() >= PROBABILITIES.get(category, 1.0):
             drawn[category] = []
             continue
@@ -126,11 +136,11 @@ def combo_key(resolved, template):
     return hashlib.sha1("\n".join(parts).encode("utf-8")).hexdigest()
 
 
-def clean_prompt(text):
-    """Drop empty sentences / comma items left by empty placeholders."""
+def clean_prompt(text, drop=frozenset()):
+    """Drop empty sentences / comma items left by empty placeholders, and items listed in drop."""
     sentences = []
     for sentence in text.split("."):
-        items = [item.strip() for item in sentence.split(",") if item.strip(" :")]
+        items = [item.strip() for item in sentence.split(",") if item.strip(" :") and item.strip() not in drop]
         if items:
             sentences.append(", ".join(items).strip(" :"))
     return ". ".join(s for s in sentences if s)
@@ -139,7 +149,8 @@ def clean_prompt(text):
 def render(template, resolved):
     values = {category: ", ".join(frags) for category, frags in resolved.items()}
     body = SLOT_PATTERN.sub(lambda m: values.get(m.group(1), ""), template)
-    return f"{PROMPT_HEAD}, {clean_prompt(body)}"
+    drop = EMPTINESS_ITEMS if resolved.get("presence") else frozenset()
+    return f"{PROMPT_HEAD}, {clean_prompt(body, drop)}"
 
 
 def make_slug(environment, max_words=3):
@@ -165,7 +176,8 @@ def new_prompt(data, history, rng=None):
         seed=rng.randint(0, 2**31 - 1),
         slug=make_slug(environment),
         key=key,
-        signature={c: (raw[c][0] if raw[c] else None) for c in ("environment", "lighting")},
+        signature={**{c: (raw[c][0] if raw[c] else None) for c in ("environment", "lighting")},
+                   "presence": bool(raw["presence"])},
     )
 
 

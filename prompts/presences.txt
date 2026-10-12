@@ -1,0 +1,25 @@
+# Rare unsettling human presences (drawn ~1 image in 6, never twice in a row, replaces the anomaly).
+# Ambiguous, small in frame, never a monster: the viewer should doubt what they saw.
+# Distant and blurry
+a faint blurry human silhouette standing motionless at the far end of the corridor, barely visible
+a distant indistinct dark figure in the background, out of focus, half lost in the gloom
+a tiny lone figure standing perfectly still in a far doorway, featureless, too far to make out
+a vague human shape at the edge of the light, motion-blurred as if it moved during the exposure
+# Partially hidden
+a pale figure half hidden behind a door frame in the distance, only one shoulder and part of a head showing
+a figure peeking from around a corner far away, face lost in shadow
+part of a person visible through a gap in a doorway in the background, standing still
+# Shadow only
+a human shadow cast on the far wall with nobody there to cast it
+the long shadow of a standing person stretching across the floor from an unseen doorway
+# Back turned, facing the wall
+a person standing in a far corner facing the wall, back turned, completely still
+a lone figure seen from behind at the end of the hallway, arms hanging limp at its sides
+# Reflections
+a blurry figure reflected in a dark window, with no one standing in the room
+a faint human silhouette reflected on the glossy floor far ahead, the source out of frame
+# Slightly wrong proportions
+an unusually tall thin figure standing in a distant doorway, head almost touching the frame, face not visible
+a distant figure with arms slightly too long, standing motionless in the dark, featureless
+a blurry person far away whose head is tilted at an unnatural angle
+a distant figure standing in the dark with its face a smooth blur

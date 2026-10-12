@@ -41,7 +41,7 @@ def test_prompt_always_starts_with_head_and_has_no_leftover_braces():
     for seed in range(200):
         result = generator.new_prompt(data, history, random.Random(seed))
         assert result.prompt.startswith(generator.PROMPT_HEAD + ", ")
-        assert "no people" in result.prompt
+        assert ("no people" in result.prompt) != bool(result.fragments["presence"])
         assert "{" not in result.prompt and ", ," not in result.prompt
 
 
@@ -60,7 +60,8 @@ def test_anomaly_probability_roughly_respected():
     data = generator.load_fragments()
     rng = random.Random(1)
     hits = sum(bool(generator.draw_raw(data["categories"], rng, [])["anomalies"]) for _ in range(2000))
-    assert 0.28 < hits / 2000 < 0.42
+    # 35 %, except when a presence (20 %) replaces it
+    assert 0.23 < hits / 2000 < 0.33
 
 
 def test_anti_proximity_avoids_recent_environment_and_lighting():
@@ -112,3 +113,49 @@ def test_environment_tags_are_stripped_and_respected():
         drawn = generator.draw_raw(data["categories"], rng, [], data["exclusions"])
         for category in data["exclusions"][drawn["environment"][0]]:
             assert drawn[category] == []
+
+
+def test_presence_frequency_is_about_one_in_six():
+    data = generator.load_fragments()
+    history = generator.History()
+    rng = random.Random(7)
+    hits = 0
+    for _ in range(3000):
+        result = generator.new_prompt(data, history, rng)
+        hits += result.signature["presence"]
+        generator.record(history, result)
+    assert 0.14 < hits / 3000 < 0.19
+
+
+def test_presence_never_twice_in_a_row():
+    data = generator.load_fragments()
+    history = generator.History()
+    rng = random.Random(8)
+    previous = False
+    for _ in range(1000):
+        result = generator.new_prompt(data, history, rng)
+        assert not (previous and result.signature["presence"])
+        previous = result.signature["presence"]
+        generator.record(history, result)
+
+
+def test_presence_replaces_anomaly_and_emptiness_words():
+    data = generator.load_fragments()
+    rng = random.Random(9)
+    seen = 0
+    for _ in range(500):
+        result = generator.new_prompt(data, generator.History(), rng)
+        if not result.fragments["presence"]:
+            continue
+        seen += 1
+        assert result.fragments["anomalies"] == []
+        items = {item.strip() for item in result.prompt.replace(".", ",").split(",")}
+        assert not items & generator.EMPTINESS_ITEMS
+        assert result.fragments["presence"][0] in result.prompt
+    assert seen
+
+
+def test_old_history_entries_without_presence_flag_still_work():
+    data = generator.load_fragments()
+    history = generator.History(recent=[{"environment": "x", "lighting": "y"}])
+    generator.new_prompt(data, history, random.Random(0))
