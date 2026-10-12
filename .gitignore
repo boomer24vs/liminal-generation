@@ -4,3 +4,6 @@ __pycache__/
 .pytest_cache/
 generated/*
 !generated/.gitkeep
+# Internal design notes, kept local
+CLAUDE.md
+style/
